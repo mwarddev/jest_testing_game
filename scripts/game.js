@@ -40,7 +40,7 @@ function lightsOn(circ) {
     document.getElementById(circ).classList.add("light");
     setTimeout(() => {
         document.getElementById(circ).classList.remove("light");
-    }, 4000);
+    }, 1000);
 }
 
 function showTurns() {
@@ -54,5 +54,19 @@ function showTurns() {
     }, 800);
 }
 
+function playerTurn() {
+    let i = game.playerMoves.length-1;
+    if (game.currentGame[i] === game.playerMoves[i]) {
+        if (game.currentGame.length === game.playerMoves.length) {
+            game.score++;
+            showScore();
+            addTurn();
+        }
+    } else {
+        alert("Wrong Move!");
+        newGame();
+    }
+}
 
-module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns };
+
+module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns, playerTurn };
